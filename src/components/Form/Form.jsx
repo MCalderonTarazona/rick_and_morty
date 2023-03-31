@@ -4,6 +4,7 @@ import validation from '../../validation'
 import style from './Form.module.css'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faArrowRightToBracket, faEyeSlash, faEye, faBell } from '@fortawesome/free-solid-svg-icons'
+import banner from '../../img/banner.png'
 
 export default function Form ({login}) { 
 
@@ -33,7 +34,7 @@ const handleSubmit = (event) => {
   return (
     <>
     <div className={style.contenedorLogin}>
-      <img src='banner.png' alt='' />
+      <img src={banner} alt='' />
       <div className={style.contenedorForm}>
         <form onSubmit={handleSubmit}>
           <h2>Email</h2>
