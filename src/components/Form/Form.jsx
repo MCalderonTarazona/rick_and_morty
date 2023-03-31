@@ -34,7 +34,7 @@ const handleSubmit = (event) => {
   return (
     <>
     <div className={style.contenedorLogin}>
-      <img src={banner} alt='' />
+      <img src={banner} alt='Rick' />
       <div className={style.contenedorForm}>
         <form onSubmit={handleSubmit}>
           <h2>Email</h2>
