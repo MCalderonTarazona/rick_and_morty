@@ -1,38 +1,40 @@
+@import url('https://fonts.googleapis.com/css2?family=Delicious+Handrawn&display=swap');
+
 .App {
-  text-align: center;
+   text-align: center;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.modalDiv {
+  width: 100vw;
+  height: 100vh;
+  position: absolute;
+  top: 0;
+  background-color: rgba(91, 112, 131, 0.4);
   display: flex;
-  flex-direction: column;
-  align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  align-items: center;
+}
+.modal {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+
+  border: 2px solid #5fe03f;
+  border-radius: 2%;
+  background: #113408;
+  font-family: 'Delicious Handrawn';
+  color: #5fe03f;
+  width: 400px;
+  height: 500px;
 }
 
-.App-link {
-  color: #61dafb;
+.modal img {
+  border: 2px solid #69ff4b;
+  width: 40%;
+  border-radius: 100%;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.modal h2 {
+  margin-top: 0px;
+  font-size: 20px;
 }

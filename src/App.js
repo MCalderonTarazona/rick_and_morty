@@ -1,25 +1,101 @@
-import logo from './logo.svg';
 import './App.css';
+import Cards from './components/Cards/Cards.jsx';
+import Nav from './components/Nav/Nav.jsx';
+//import characters, { Rick } from './data.js';
+import About from './components/About/About';
+import Detail from './components/Detail/Detail';
+import Error from './components/Error/Error';
+import Form from './components/Form/Form';
+import Favorites from './components/Favorites/Favorites';
+import SearchBar from './components/SearchBar/SearchBar';
+import React, { useState, useEffect} from 'react';
+import {Routes, Route, useNavigate, useLocation} from "react-router-dom";
+import axios from "axios";
+import {removeFav} from './redux/Actions/actions'
+import {connect} from "react-redux"
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+export function App(props) {
+const location = useLocation();
+const background = location.state && location.state.background;
+
+let [characters, setCharacters] = useState([]);
+
+const onSearch = (id) => {
+   axios(`https://rickandmortyapi.com/api/character/${id}`).then(({ data }) => {
+      if (data.name) {
+
+         if(characters.find(character => character.id === data.id))
+            window.alert(`ID ${data.id} ya existe`);
+         else setCharacters((oldChars) => [...oldChars, data]);
+
+      } else if (!data.id) window.alert('ID vacio');
+      else {
+         window.alert('¡No hay personajes con este ID!');
+      }
+   });
+};
+
+const onClose = (id) => {
+   setCharacters(characters.filter((elemento) => elemento.id !== parseInt(id)));
+   props.removeFav(parseInt(id));
+};
+
+const navigate = useNavigate();
+const [access, setAccess] = useState(false);
+const EMAIL = "prueba@gmail.com";
+const PASSWORD = "prueba1234";
+
+const login = (userData) => {
+    if (EMAIL === userData.email && PASSWORD === userData.password) {
+        setAccess(true);
+        navigate('/home');
+    }else{
+      alert("Email/Contraseña incorrecta")
+    }
 }
 
-export default App;
+const logout = () => {
+   setAccess(false);
+   navigate('/');
+};
+
+useEffect(() => {
+   !access && navigate('/');
+ }, [access]);
+
+
+   return (
+      <div className='App'>
+      <Nav logout={logout}/>
+      <SearchBar onSearch={onSearch} />
+      <Routes location={background || location}>
+         <Route path='/' element={<Form login={login}/>} />
+         <Route path='/home' element={<Cards characters={characters} onClose={onClose}/>} />
+         <Route path='/about' element={<About />} />
+         <Route path='/favorites' element={<Favorites/>} />
+         <Route path='*' element={<Error />} />
+      </Routes>
+      {location && (
+      <Routes>
+         <Route path='/detail/:id' element={<Detail />} />
+      </Routes>
+      )}
+      
+      </div>
+   );
+}
+
+export function mapDispatchToProps(dispatch) {
+   return {
+      removeFav: (id) => dispatch(removeFav(id))
+   }
+}
+
+export function mapStateToProps(state) {
+   return {
+      myFavorites: state.myFavorites,
+   }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(App);
+
