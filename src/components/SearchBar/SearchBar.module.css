@@ -71,6 +71,36 @@
     border-radius: 50%;
 }
 
+@media only screen and (max-width: 600px) {
+    .boxSearch input {
+        width: 200px;
+        height: 70px;
+        background: #4c9141;
+        border-radius: 10px;
+        text-align: center;
+    }
+    .boxSearch:hover input{
+        width: 200px;
+        height: 70px;
+        background: #4c9141;
+        border-radius: 10px;
+        text-align: center;
+    }
+
+    .randomSearch {
+        background: #113408;
+        box-shadow: 0 0 10px #5fe03f;
+        border-radius: 50%;
+    }
+
+    .randomSearch:hover {
+        background: #113408;
+        box-shadow: 0 0 10px #5fe03f;
+        border-radius: 50%;
+    }
+
+}
+
 
 
 
