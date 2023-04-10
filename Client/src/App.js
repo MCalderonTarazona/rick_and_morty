@@ -67,10 +67,9 @@ useEffect(() => {
    return (
       <div className='App'>
       <Nav logout={logout}/>
-      <SearchBar onSearch={onSearch} />
       <Routes location={background || location}>
          <Route path='/' element={<Form login={login}/>} />
-         <Route path='/home' element={<Cards characters={characters} onClose={onClose}/>} />
+         <Route path='/home' element={<><SearchBar onSearch={onSearch} /><Cards characters={characters} onClose={onClose}/></>} />
          <Route path='/about' element={<About />} />
          <Route path='/favorites' element={<Favorites/>} />
          <Route path='*' element={<Error />} />

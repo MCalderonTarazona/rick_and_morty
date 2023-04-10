@@ -13,6 +13,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  z-index: 10000;
 }
 .modal {
   display: flex;
@@ -25,7 +26,7 @@
   font-family: 'Delicious Handrawn';
   color: #5fe03f;
   width: 400px;
-  height: 500px;
+  height: 480px;
 }
 
 .modal img {
@@ -35,6 +36,26 @@
 }
 
 .modal h2 {
-  margin-top: 0px;
-  font-size: 20px;
+  margin-top: 10px;
+  font-size: 25px;
+}
+
+.btnClose {
+  color: #69ff4b;
+  font-size: 40px;
+  transform: translateY(-10px) translateX(184px);
+  cursor: pointer;
+}
+
+@media only screen and (max-width: 450px) {
+  .modal {
+    width: 250px;
+    height: 400px;
+  }
+  .btnClose {
+    transform: translateY(-34px) translateX(109px);
+  }
+  .modal h2 {
+    font-size: 18px;
+  }
 }

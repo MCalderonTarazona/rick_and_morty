@@ -1,6 +1,6 @@
 import style from "./SearchBar.module.css"
 import { useState } from 'react';
-import { useLocation } from "react-router-dom";
+//import { useLocation } from "react-router-dom";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons'
 
@@ -11,11 +11,11 @@ let [id, idSet] = useState ("");
 
 const handleChange = (event) => idSet(event.target.value)
 
-const {pathname} = useLocation(); 
+/*const {pathname} = useLocation(); 
 
 if (pathname === "/" || pathname === "/about" || pathname === "/favorites" ) {
    return null;
-}
+}*/
 
    return (
       <>

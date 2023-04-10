@@ -1,6 +1,8 @@
 import axios from "axios";
 import { useParams, useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faSquareXmark } from '@fortawesome/free-solid-svg-icons';
 
 const Detail = () => {
 
@@ -28,19 +30,19 @@ useEffect(() => {
     return(
       <div className="modalDiv">
          <div className="modal">
+            <div className="btnClose" onClick={() => navigate(-1)}>
+               <FontAwesomeIcon icon={faSquareXmark} />
+            </div> 
             <div>
                <img src={character.image} alt='' />
             </div>
             <div>
-               <h2>{character.name}</h2>
-               <h2>{character.status}</h2>
-               <h2>{character.species}</h2>
-               <h2>{character.gender}</h2>
-               <h2>{character.origin.name}</h2>
+               <h2>Name: {character.name}</h2>
+               <h2>Status: {character.status}</h2>
+               <h2>Specie: {character.species}</h2>
+               <h2>Gender: {character.gender}</h2>
+               <h2>Origin: {character.origin.name}</h2>
             </div>
-            <div>
-               <button onClick={() => navigate(-1)}>Close</button>
-            </div> 
          </div>
       </div>
     );

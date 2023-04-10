@@ -4,38 +4,69 @@ import style from "./Favorites.module.css"
 import {filter, order} from "../../redux/Actions/actions"
 import { useDispatch, useSelector } from "react-redux";
 import { useState } from "react";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faArrowDownWideShort, faArrowDownShortWide } from '@fortawesome/free-solid-svg-icons'
 
 export default function Favorites(props) {
-
+   
    const [aux,setAux] = useState(false);
+   const [tipo,setTipo]= useState("");
 
    const dispatch = useDispatch();
 
    const myFavorites = useSelector(state => state.myFavorites);
 
-   const handleOrder = (e) => {
-      dispatch(order(e.target.value));
+   const handleOrder = (value) => {
+      dispatch(order(value));
       setAux(!aux);
+      setTipo("");
    };
 
-   const handleFilter = (e) => {
-      dispatch(filter(e.target.value));
+   const handleFilter = (gender) => {
+      dispatch(filter(gender));
+      setTipo(gender);
+   };
+
+   const clear = () => {
+      dispatch(order("D"));
+      setAux(false);
+      setTipo("");
    };
 
 
    return (
    <>
-   <select onChange={handleOrder}>
-      <option value="A">Ascendente</option>
-      <option value="D">Descendente</option>
-   </select>
-   <select onChange={handleFilter}>
-      <option value="Male">Male</option>
-      <option value="Female">Female</option>
-      <option value="Genderless">Genderless</option>
-      <option value="unknown">unknown</option>
-   </select>
-   
+    <div className = {style.titleFav}>
+         <h1>Favorites</h1>
+    </div>
+    <div className = {style.containerFilterFav}>
+         <div className = {style.titleGenderFav}>Gender</div>
+         <div className = {style.orderFav}>
+            { aux 
+            ? <div onClick={()=>handleOrder("A")}><FontAwesomeIcon icon={faArrowDownShortWide} /></div>
+            : <div onClick={()=>handleOrder("D")}><FontAwesomeIcon icon={faArrowDownWideShort} /></div> 
+            }
+         </div>
+         <div className = {style.filterFav}>
+            {tipo === "Male"
+            ? <div className = {style.filterNameFav+" "+style.filterNameActiveFav} onClick={()=>handleFilter("Male")}>Male</div>
+            : <div className = {style.filterNameFav} onClick={()=>handleFilter("Male")}>Male</div>
+            }
+            {tipo === "Female"
+            ? <div className = {style.filterNameFav+" "+style.filterNameActiveFav} onClick={()=>handleFilter("Female")}>Female</div>
+            : <div className = {style.filterNameFav} onClick={()=>handleFilter("Female")}>Female</div>
+            }
+            {tipo === "Genderless"
+            ? <div className = {style.filterNameFav+" "+style.filterNameActiveFav} onClick={()=>handleFilter("Genderless")}>Genderless</div>
+            : <div className = {style.filterNameFav} onClick={()=>handleFilter("Genderless")}>Genderless</div>
+            }
+            {tipo === "unknown"
+            ? <div className = {style.filterNameFav+" "+style.filterNameActiveFav} onClick={()=>handleFilter("unknown")}>Unknown</div>
+            : <div className = {style.filterNameFav} onClick={()=>handleFilter("unknown")}>Unknown</div>
+            }
+         </div>
+         <div className = {style.titleClearFav} onClick={()=>clear()}>Clear</div>
+    </div>
     <div className = {style.containerFav}>
        
         {  

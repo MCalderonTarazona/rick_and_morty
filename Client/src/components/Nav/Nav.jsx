@@ -33,7 +33,7 @@ if (pathname === "/") {
         <Link onClick={() => setShowhambuger(!showHambuger)} className={style.menuNav} to="/home">Home</Link>
         <Link onClick={() => setShowhambuger(!showHambuger)} className={style.menuNav} to="/favorites">Favorites</Link>
         <Link onClick={() => setShowhambuger(!showHambuger)} className={style.menuNav} to="/about">About</Link>
-        <div className={style.menuNav} onClick={logout}>Logout</div>
+        <div className={style.menuNav} onClick={()=>{setShowhambuger(!showHambuger);logout()}}>Logout</div>
       </div>
       }
       <div className={style.logoutNav} onClick={logout}><FontAwesomeIcon icon={faArrowRightFromBracket} /></div>
