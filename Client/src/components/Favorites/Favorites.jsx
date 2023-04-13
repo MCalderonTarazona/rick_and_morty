@@ -10,27 +10,28 @@ import { faArrowDownWideShort, faArrowDownShortWide } from '@fortawesome/free-so
 export default function Favorites(props) {
    
    const [aux,setAux] = useState(false);
-   const [tipo,setTipo]= useState("");
+   //const [tipo,setTipo]= useState("");
 
    const dispatch = useDispatch();
 
    const myFavorites = useSelector(state => state.myFavorites);
+   const tipo = useSelector(state => state.filterGender);
 
    const handleOrder = (value) => {
       dispatch(order(value));
       setAux(!aux);
-      setTipo("");
+      //setTipo("");
    };
 
    const handleFilter = (gender) => {
       dispatch(filter(gender));
-      setTipo(gender);
+      //setTipo(gender);
    };
 
    const clear = () => {
-      dispatch(order("D"));
+      dispatch(order("All"));
       setAux(false);
-      setTipo("");
+      //setTipo("");
    };
 
 

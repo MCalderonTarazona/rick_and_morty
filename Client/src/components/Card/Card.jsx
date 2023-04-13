@@ -15,7 +15,7 @@ const {pathname} = useLocation();
 const [isFav, setIsfav] = useState(false);
 
 const dispatch = useDispatch();
-const myFavorites = useSelector(state => state.myFavorites);
+const myFavorites = useSelector(state => state.allCharacters);
 
 const handleFavorite = () => {
    if (isFav) {
