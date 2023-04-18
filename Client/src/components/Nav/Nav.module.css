@@ -53,6 +53,7 @@
     .menuNavContainer {
         flex-direction: column;
         align-items: center;
+        justify-content: space-around;
         background-color: #113408;
         color: #5fe03f;
         position: absolute;
